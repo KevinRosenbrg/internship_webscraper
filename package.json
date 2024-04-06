@@ -1,0 +1,19 @@
+{
+  "name": "internship_webscraper",
+  "version": "1.0.0",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bottleneck": "^2.19.5",
+    "fs": "^0.0.1-security",
+    "puppeteer": "^22.5.0",
+    "robots-parser": "^3.0.1",
+    "robots-txt-parser": "^2.0.3"
+  },
+  "description": ""
+}

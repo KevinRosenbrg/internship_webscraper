@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interships</title>
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="company" id="company-list">
+      </div>
+    </div>
+
+    <script>
+      function createCompanyLinks(companies) {
+        const companyList = document.getElementById('company-list');
+
+        companies.forEach(company => {
+            const companyDiv = document.createElement('div');
+            companyDiv.classList.add('company');
+
+            const companyName = document.createElement('div');
+            companyName.classList.add('company-name');
+            companyName.innerHTML = `<span><a href="${company.homepageLink}" target="_blank">${company.name}</a></span>`;
+            companyDiv.appendChild(companyName);
+
+            const linksDiv = document.createElement('div');
+            linksDiv.classList.add('links');
+
+            const linkNames = {
+            'careersLink': 'Join Our Team',
+            'internshipLink': 'Internship Program',
+            'aboutLink': 'About Us',
+            'contactLink': 'Get in Touch'
+          };
+          
+          for (const [linkType, linkName] of Object.entries(linkNames)) {
+            if (company[linkType]) {
+              const link = document.createElement('a');
+              link.classList.add('link');
+              link.href = company[linkType];
+              link.target = "_blank";
+              link.innerText = linkName;
+              linksDiv.appendChild(link);
+            } else {
+              const nullLink = document.createElement('div');
+              nullLink.classList.add('link', 'link-null');
+              nullLink.innerText = `${linkName} (N/A)`;
+              linksDiv.appendChild(nullLink);
+            }
+          }
+
+            companyDiv.appendChild(linksDiv);
+            companyList.appendChild(companyDiv);
+        });
+        }
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', './scraped_data/data.json', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          const data = JSON.parse(xhr.responseText);
+          createCompanyLinks(data);
+        } else {
+          console.error('Failed to fetch data. Status:', xhr.status);
+        }
+      };
+      xhr.onerror = function() {
+        console.error('Failed to fetch data.');
+      };
+      xhr.send();
+    </script>
+
+  </body>
+</html>
