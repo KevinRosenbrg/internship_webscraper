@@ -30,11 +30,11 @@
             linksDiv.classList.add('links');
 
             const linkNames = {
-            'careersLink': 'Join Our Team',
-            'internshipLink': 'Internship Program',
-            'aboutLink': 'About Us',
-            'contactLink': 'Get in Touch'
-          };
+              'careersLink': 'Join Our Team',
+              'internshipLink': 'Internship Program',
+              'aboutLink': 'About Us',
+              'contactLink': 'Get in Touch'
+            };
           
           for (const [linkType, linkName] of Object.entries(linkNames)) {
             if (company[linkType]) {
@@ -52,10 +52,10 @@
             }
           }
 
-            companyDiv.appendChild(linksDiv);
-            companyList.appendChild(companyDiv);
+          companyDiv.appendChild(linksDiv);
+          companyList.appendChild(companyDiv);
         });
-        }
+      }
 
       const xhr = new XMLHttpRequest();
       xhr.open('GET', './scraped_data/data.json', true);
